@@ -19,9 +19,9 @@ namespace ThiTracNghiemTrucTuyen.Api.Data.Entities
         public double Score { get; set; }
 
         [ForeignKey(nameof(StudentId))]
-        public virtual User? Student { get; set; }
+        public virtual User Student { get; set; }
 
         [ForeignKey(nameof(QuizId))]
-        public virtual Quiz? Quiz { get; set; }
+        public virtual Quiz Quiz { get; set; }
     }
 }

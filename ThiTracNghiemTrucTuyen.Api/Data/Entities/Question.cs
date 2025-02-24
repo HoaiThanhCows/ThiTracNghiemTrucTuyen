@@ -7,9 +7,9 @@ namespace ThiTracNghiemTrucTuyen.Api.Data.Entities
     {
         [Key]
         public int Int { get; set; }
-        public string? Text { get; set; }
+        public string Text { get; set; }
         public Guid QuizId { get; set; }
         [ForeignKey(nameof(QuizId))]
-        public virtual Quiz? Quiz { get; set; }
+        public virtual Quiz Quiz { get; set; }
     }
 }

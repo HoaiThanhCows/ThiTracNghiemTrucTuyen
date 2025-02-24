@@ -18,7 +18,9 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("conn"))
 );
 var app = builder.Build();
-
+#if DEBUG
+ApplyDbMigration(app.Services);
+#endif 
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -51,6 +53,16 @@ app.MapGet("/weatherforecast", () =>
 
 app.Run();
 
+static void ApplyDbMigration(IServiceProvider serviceProvider) {
+    var scope = serviceProvider.CreateScope();
+    var context = serviceProvider.GetRequiredService<ApplicationDbContext>();
+    if (context.Database.GetPendingMigrations().Any())
+    {
+        context.Database.Migrate();
+
+    }
+}
+;
 internal record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
 {
     public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);

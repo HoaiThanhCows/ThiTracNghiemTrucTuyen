@@ -9,10 +9,10 @@ namespace ThiTracNghiemTrucTuyen.Api.Data.Entities
         public int Id { get; set; }
         public int QuestionId { get; set; }
        
-        public string? Text { get; set; }
+        public string Text { get; set; }
         public bool Correct { get; set; }
         [ForeignKey(nameof(QuestionId))]
-        public virtual Question? Question { get; set; }
+        public virtual Question Question { get; set; }
 
         public virtual ICollection<Option> Options { get; set; } = [];
     }
