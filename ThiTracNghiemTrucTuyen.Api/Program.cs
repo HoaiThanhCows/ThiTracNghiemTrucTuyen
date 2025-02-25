@@ -2,6 +2,8 @@ using ThiTracNghiemTrucTuyen.Api.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 using ThiTracNghiemTrucTuyen.Api.Data.Entities;
+using ThiTracNghiemTrucTuyen.Shared.DTOs;
+using ThiTracNghiemTrucTuyen.Api.Services;
 
 
 
@@ -13,6 +15,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddTransient<IPasswordHasher<User>, PasswordHasher<User>>();
+builder.Services.AddTransient<AuthService>();
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("conn"))
